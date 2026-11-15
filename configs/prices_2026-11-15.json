@@ -1,0 +1,759 @@
+{
+ "snapshot_utc": "2026-11-15T06:17:51Z",
+ "source": "https://openrouter.ai/api/v1/models",
+ "units": "USD per 1M tokens",
+ "reasoning_note": "reasoning_per_m null = reasoning tokens billed at out_per_m",
+ "missing_from_openrouter": [],
+ "routes": {
+  "openrouter/aion-labs/aion-3.0": {
+   "in_per_m": 3.0,
+   "out_per_m": 6.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.75,
+   "context": 131072,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1783443095
+  },
+  "openrouter/aion-labs/aion-3.0-mini": {
+   "in_per_m": 0.7,
+   "out_per_m": 1.4,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.18,
+   "context": 131072,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1783443096
+  },
+  "openrouter/anthropic/claude-fable-5": {
+   "in_per_m": 10.0,
+   "out_per_m": 50.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 1.0,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1781007515
+  },
+  "openrouter/anthropic/claude-fable-5.1": {
+   "in_per_m": 10.0,
+   "out_per_m": 50.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.25,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1788285838
+  },
+  "openrouter/anthropic/claude-fable-5.2": {
+   "in_per_m": 8.0,
+   "out_per_m": 40.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.2,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1794253781
+  },
+  "openrouter/anthropic/claude-haiku-4.5": {
+   "in_per_m": 1.0,
+   "out_per_m": 5.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.1,
+   "context": 200000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1760547638
+  },
+  "openrouter/anthropic/claude-haiku-5.5": {
+   "in_per_m": 0.1,
+   "out_per_m": 0.5,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.01,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1791397883
+  },
+  "openrouter/anthropic/claude-opus-4.5": {
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.5,
+   "context": 200000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1764010580
+  },
+  "openrouter/anthropic/claude-opus-4.6": {
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.5,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1770219050
+  },
+  "openrouter/anthropic/claude-opus-4.8": {
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.5,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1779905091
+  },
+  "openrouter/anthropic/claude-opus-5": {
+   "in_per_m": 5.0,
+   "out_per_m": 25.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.5,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1784912544
+  },
+  "openrouter/anthropic/claude-opus-5.5": {
+   "in_per_m": 4.0,
+   "out_per_m": 20.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.2,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1790094732
+  },
+  "openrouter/anthropic/claude-sonnet-4.5": {
+   "in_per_m": 3.0,
+   "out_per_m": 15.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.3,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1759161676
+  },
+  "openrouter/anthropic/claude-sonnet-4.6": {
+   "in_per_m": 3.0,
+   "out_per_m": 15.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.3,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1771342990
+  },
+  "openrouter/anthropic/claude-sonnet-5": {
+   "in_per_m": 2.0,
+   "out_per_m": 10.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.2,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1782843083
+  },
+  "openrouter/deepseek/deepseek-v4-flash": {
+   "in_per_m": 0.09,
+   "out_per_m": 0.18,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.018,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1777000666
+  },
+  "openrouter/deepseek/deepseek-v4-flash-0731": {
+   "in_per_m": 0.06,
+   "out_per_m": 0.18,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.015,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1785478908
+  },
+  "openrouter/deepseek/deepseek-v4-pro": {
+   "in_per_m": 0.9,
+   "out_per_m": 1.5,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.25,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1777000679
+  },
+  "openrouter/deepseek/deepseek-v4-pro-0813": {
+   "in_per_m": 0.111,
+   "out_per_m": 4.44,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.097,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1786549364
+  },
+  "openrouter/deepseek/deepseek-v4.1-flash": {
+   "in_per_m": 0.0507,
+   "out_per_m": 0.2028,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.001014,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1789021285
+  },
+  "openrouter/google/gemini-3-flash-preview": {
+   "in_per_m": 0.5,
+   "out_per_m": 3.0,
+   "reasoning_per_m": 3.0,
+   "cache_read_per_m": 0.05,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1765987078
+  },
+  "openrouter/google/gemini-3.1-pro-preview": {
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "reasoning_per_m": 12.0,
+   "cache_read_per_m": 0.2,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1771509627
+  },
+  "openrouter/google/gemini-3.5-flash": {
+   "in_per_m": 1.5,
+   "out_per_m": 9.0,
+   "reasoning_per_m": 9.0,
+   "cache_read_per_m": 0.15,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1779193800
+  },
+  "openrouter/google/gemini-3.5-flash-lite": {
+   "in_per_m": 0.3,
+   "out_per_m": 2.5,
+   "reasoning_per_m": 2.5,
+   "cache_read_per_m": 0.03,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1784646726
+  },
+  "openrouter/google/gemini-3.6-flash": {
+   "in_per_m": 0.75,
+   "out_per_m": 3.75,
+   "reasoning_per_m": 3.75,
+   "cache_read_per_m": 0.075,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1784646733
+  },
+  "openrouter/google/gemini-3.8-flash": {
+   "in_per_m": 0.825,
+   "out_per_m": 4.125,
+   "reasoning_per_m": 4.125,
+   "cache_read_per_m": 0.0825,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1788362056
+  },
+  "openrouter/google/gemini-4-argon": {
+   "in_per_m": 2.0,
+   "out_per_m": 10.0,
+   "reasoning_per_m": 10.0,
+   "cache_read_per_m": 0.1,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1791907477
+  },
+  "openrouter/inclusionai/ling-3.0-flash": {
+   "in_per_m": 0.021,
+   "out_per_m": 0.063,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.0042,
+   "context": 262144,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1784818580
+  },
+  "openrouter/meituan/longcat-2.0": {
+   "in_per_m": 0.3,
+   "out_per_m": 1.2,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.006,
+   "context": 1048756,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1784554658
+  },
+  "openrouter/meta/muse-glimmer-30b": {
+   "in_per_m": 0.3,
+   "out_per_m": 1.2,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.04,
+   "context": 131072,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1786302394
+  },
+  "openrouter/meta/muse-spark-1.1": {
+   "in_per_m": 1.25,
+   "out_per_m": 4.25,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.15,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1784215741
+  },
+  "openrouter/meta/muse-spark-1.2": {
+   "in_per_m": 1.25,
+   "out_per_m": 4.25,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.15,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1785959287
+  },
+  "openrouter/microsoft/phi-4": {
+   "in_per_m": 0.07,
+   "out_per_m": 0.14,
+   "reasoning_per_m": null,
+   "cache_read_per_m": null,
+   "context": 16384,
+   "reasoning": false,
+   "expiration_date": null,
+   "created": 1736489872
+  },
+  "openrouter/minimax/minimax-m3": {
+   "in_per_m": 0.3,
+   "out_per_m": 1.2,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.06,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1780245374
+  },
+  "openrouter/mistralai/ministral-14b-2512": {
+   "in_per_m": 0.2,
+   "out_per_m": 0.2,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.02,
+   "context": 262144,
+   "reasoning": false,
+   "expiration_date": null,
+   "created": 1764681735
+  },
+  "openrouter/mistralai/ministral-3b-2512": {
+   "in_per_m": 0.1,
+   "out_per_m": 0.1,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.01,
+   "context": 131072,
+   "reasoning": false,
+   "expiration_date": null,
+   "created": 1764681560
+  },
+  "openrouter/mistralai/mistral-large-2512": {
+   "in_per_m": 0.5,
+   "out_per_m": 1.5,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.05,
+   "context": 262144,
+   "reasoning": false,
+   "expiration_date": null,
+   "created": 1764624472
+  },
+  "openrouter/mistralai/mistral-medium-3-5": {
+   "in_per_m": 1.5,
+   "out_per_m": 7.5,
+   "reasoning_per_m": null,
+   "cache_read_per_m": null,
+   "context": 262144,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1777570439
+  },
+  "openrouter/moonshotai/kimi-k2.6": {
+   "in_per_m": 0.65,
+   "out_per_m": 3.41,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.15,
+   "context": 262144,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1776699402
+  },
+  "openrouter/moonshotai/kimi-k3": {
+   "in_per_m": 0.192,
+   "out_per_m": 16.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.182,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1784215858
+  },
+  "openrouter/nvidia/nemotron-3-ultra-550b-a55b": {
+   "in_per_m": 0.6,
+   "out_per_m": 2.4,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.12,
+   "context": 262144,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1780551208
+  },
+  "openrouter/nvidia/nemotron-3.5-lightning": {
+   "in_per_m": 0.07,
+   "out_per_m": 0.2,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.04,
+   "context": 262144,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1786452751
+  },
+  "openrouter/openai/gpt-4.1-mini": {
+   "in_per_m": 0.4,
+   "out_per_m": 1.6,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.1,
+   "context": 1047576,
+   "reasoning": false,
+   "expiration_date": null,
+   "created": 1744651381
+  },
+  "openrouter/openai/gpt-5": {
+   "in_per_m": 1.25,
+   "out_per_m": 10.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.125,
+   "context": 400000,
+   "reasoning": true,
+   "expiration_date": "2026-12-11",
+   "created": 1754587413
+  },
+  "openrouter/openai/gpt-5-mini": {
+   "in_per_m": 0.25,
+   "out_per_m": 2.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.025,
+   "context": 400000,
+   "reasoning": true,
+   "expiration_date": "2026-12-11",
+   "created": 1754587407
+  },
+  "openrouter/openai/gpt-5.2": {
+   "in_per_m": 1.75,
+   "out_per_m": 14.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.175,
+   "context": 400000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1765389775
+  },
+  "openrouter/openai/gpt-5.2-pro": {
+   "in_per_m": 21.0,
+   "out_per_m": 168.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": null,
+   "context": 400000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1765389780
+  },
+  "openrouter/openai/gpt-5.4": {
+   "in_per_m": 2.5,
+   "out_per_m": 15.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.25,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1772734352
+  },
+  "openrouter/openai/gpt-5.5": {
+   "in_per_m": 5.0,
+   "out_per_m": 30.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.5,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1777051893
+  },
+  "openrouter/openai/gpt-5.6-luna": {
+   "in_per_m": 0.2,
+   "out_per_m": 1.2,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.02,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1783590864
+  },
+  "openrouter/openai/gpt-5.6-luna-pro": {
+   "in_per_m": 0.2,
+   "out_per_m": 1.2,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.02,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1783590867
+  },
+  "openrouter/openai/gpt-5.6-sol": {
+   "in_per_m": 4.4,
+   "out_per_m": 22.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.44,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1783590850
+  },
+  "openrouter/openai/gpt-5.6-sol-pro": {
+   "in_per_m": 4.0,
+   "out_per_m": 20.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.4,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1783590854
+  },
+  "openrouter/openai/gpt-5.6-terra": {
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.2,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1783590857
+  },
+  "openrouter/openai/gpt-5.6-terra-pro": {
+   "in_per_m": 2.0,
+   "out_per_m": 12.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.2,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1783590861
+  },
+  "openrouter/openai/gpt-6-astra": {
+   "in_per_m": 10.0,
+   "out_per_m": 50.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 1.0,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1788552838
+  },
+  "openrouter/openai/gpt-6-astra-pro": {
+   "in_per_m": 10.0,
+   "out_per_m": 50.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 1.0,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1788552835
+  },
+  "openrouter/openai/gpt-6-luna": {
+   "in_per_m": 0.1,
+   "out_per_m": 0.5,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.01,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1790100786
+  },
+  "openrouter/openai/gpt-6.1-sol": {
+   "in_per_m": 2.0,
+   "out_per_m": 10.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.1,
+   "context": 1050000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1790702882
+  },
+  "openrouter/openai/gpt-oss-120b": {
+   "in_per_m": 0.15,
+   "out_per_m": 0.6,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.075,
+   "context": 131072,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1754414231
+  },
+  "openrouter/qwen/qwen3-coder": {
+   "in_per_m": 0.3,
+   "out_per_m": 1.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.1,
+   "context": 262144,
+   "reasoning": false,
+   "expiration_date": null,
+   "created": 1753230546
+  },
+  "openrouter/qwen/qwen3.6-plus": {
+   "in_per_m": 0.325,
+   "out_per_m": 1.95,
+   "reasoning_per_m": null,
+   "cache_read_per_m": null,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1775133557
+  },
+  "openrouter/qwen/qwen3.7-flash": {
+   "in_per_m": 0.03,
+   "out_per_m": 0.13,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.006,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1785190561
+  },
+  "openrouter/qwen/qwen3.8-2.4t-a95b": {
+   "in_per_m": 2.0,
+   "out_per_m": 6.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.25,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1786551702
+  },
+  "openrouter/sakana/fugu-ultra": {
+   "in_per_m": 5.0,
+   "out_per_m": 30.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.5,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1782276303
+  },
+  "openrouter/sakana/sakana-namazu": {
+   "in_per_m": 0.95,
+   "out_per_m": 4.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.15,
+   "context": 262144,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1786410129
+  },
+  "openrouter/tencent/hy3": {
+   "in_per_m": 0.132,
+   "out_per_m": 0.528,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.033,
+   "context": 262144,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1783344048
+  },
+  "openrouter/thinkingmachines/inkling": {
+   "in_per_m": 1.0,
+   "out_per_m": 4.05,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.17,
+   "context": 524288,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1784325956
+  },
+  "openrouter/thinkingmachines/inkling-small": {
+   "in_per_m": 0.45,
+   "out_per_m": 1.2,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.1,
+   "context": 524288,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1785443117
+  },
+  "openrouter/upstage/solar-pro4": {
+   "in_per_m": 0.15,
+   "out_per_m": 0.6,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.03,
+   "context": 524288,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1786371636
+  },
+  "openrouter/x-ai/grok-4.5": {
+   "in_per_m": 2.0,
+   "out_per_m": 6.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.3,
+   "context": 500000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1783523154
+  },
+  "openrouter/x-ai/grok-4.6": {
+   "in_per_m": 2.0,
+   "out_per_m": 6.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.5,
+   "context": 500000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1786548957
+  },
+  "openrouter/xiaomi/mimo-v2.5": {
+   "in_per_m": 0.4,
+   "out_per_m": 2.0,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.08,
+   "context": 1000000,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1776874269
+  },
+  "openrouter/z-ai/glm-5.2": {
+   "in_per_m": 0.007,
+   "out_per_m": 6.8,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.006,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1781631930
+  },
+  "openrouter/z-ai/glm-5.3-flash": {
+   "in_per_m": 0.0399,
+   "out_per_m": 0.0784,
+   "reasoning_per_m": null,
+   "cache_read_per_m": 0.03,
+   "context": 1048576,
+   "reasoning": true,
+   "expiration_date": null,
+   "created": 1787752741
+  }
+ }
+}
