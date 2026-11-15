@@ -1,0 +1,36 @@
+{
+  "_source": "SF catalog 2026-11-13 + engine source (apps/screamingface-engine/src/screamingface_engine_inspect/{benchmarks,prepare}.py)",
+  "seqqa": {
+    "sf_id": "inspect-lab_bench_seqqa",
+    "revision": "48e1368633436c5a",
+    "case_count": 600,
+    "attempts": 1,
+    "case_digest": "b11b60d26139ccf4d937cb48ddcaa84c5d931cb838e857c1cab0b4ff8ce89c0d",
+    "case_set_digest": "3e3242b1e0c5a10618cc92f720c7870fbcd5eaa25553246ad6d168a0355981e4",
+    "inspect_task": "inspect_evals.lab_bench.lab_bench:lab_bench_seqqa",
+    "harness": "inspect_evals v0.20.0",
+    "dataset": "futurehouse/lab-bench SeqQA @ 5c77cec648430f30611808808861eb86f81d5eaa",
+    "serving_shuffle_seed": 7,
+    "choice_shuffle_seed": 7,
+    "scorer": "inspect_evals.lab_bench.lab_bench:precision_choice",
+    "scorer_no_answer": "Insufficient information to answer the question.",
+    "score": "plain accuracy over cases run; opting out = no answer (not wrong)",
+    "judge_tokens": false
+  },
+  "mmlu_pro": {
+    "sf_id": "inspect-mmlu_pro",
+    "revision": "145edec84bfc2324",
+    "case_count": 12032,
+    "attempts": 1,
+    "case_digest": "b765c667c3ad277a8bd49c388fcf26dc4abc2dcaacd34ac43f05e94cad611426",
+    "case_set_digest": "d9b4c58b133419eafac89a2c70e2280c8a4a865d399b487a2ecc326b57e01e26",
+    "inspect_task": "inspect_evals.mmlu_pro.mmlu_pro:mmlu_pro",
+    "harness": "inspect_evals v0.20.0",
+    "dataset": "TIGER-Lab/MMLU-Pro test @ 527feea0afed1de15a8c115abf7be4c912123315",
+    "serving_shuffle_seed": 20260917,
+    "choice_shuffle_seed": null,
+    "scorer": "inspect_ai.scorer:choice",
+    "score": "plain accuracy over cases run; 10 options, CoT template",
+    "judge_tokens": false
+  }
+}
