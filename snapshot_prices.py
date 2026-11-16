@@ -28,6 +28,7 @@ CANDIDATES = [
     "openrouter/openai/gpt-5.6-sol", "openrouter/openai/gpt-6-astra",
     "openrouter/qwen/qwen3.7-flash", "openrouter/qwen/qwen3.8-2.4t-a95b",
     "openrouter/google/gemini-3.5-flash-lite", "openrouter/google/gemini-3.6-flash",
+    "openrouter/google/gemini-3.8-flash", "openrouter/anthropic/claude-haiku-5.5",
     "openrouter/google/gemini-3.1-pro-preview", "openrouter/google/gemini-4-argon",
     "openrouter/anthropic/claude-haiku-4.5", "openrouter/anthropic/claude-sonnet-5",
     "openrouter/anthropic/claude-opus-5.5", "openrouter/anthropic/claude-fable-5.2",
