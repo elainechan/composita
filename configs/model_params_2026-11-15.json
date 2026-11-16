@@ -4418,5 +4418,525 @@
     }
    }
   }
+ },
+ "openrouter/google/gemini-3.8-flash": {
+  "upstream_id": "google/gemini-3.8-flash",
+  "observed_at": null,
+  "parameters": {
+   "frequency_penalty": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "number",
+     "minimum": -2.0,
+     "maximum": 2.0
+    }
+   },
+   "logprobs": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "boolean"
+    }
+   },
+   "max_tokens": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "integer",
+     "minimum": 1.0
+    }
+   },
+   "n": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "integer",
+     "minimum": 1.0
+    }
+   },
+   "presence_penalty": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "number",
+     "minimum": -2.0,
+     "maximum": 2.0
+    }
+   },
+   "provider_params.data_collection": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "enum": [
+      "allow",
+      "deny"
+     ]
+    }
+   },
+   "provider_params.max_price_completion": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$",
+     "max_length": 64
+    }
+   },
+   "provider_params.max_price_prompt": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$",
+     "max_length": 64
+    }
+   },
+   "provider_params.sort": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "enum": [
+      "price"
+     ]
+    }
+   },
+   "provider_params.top_k": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "integer",
+     "minimum": 0.0
+    }
+   },
+   "provider_params.zdr": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "boolean"
+    }
+   },
+   "reasoning.effort": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "enum": [
+      "max",
+      "xhigh",
+      "high",
+      "medium",
+      "low",
+      "minimal",
+      "none"
+     ]
+    }
+   },
+   "reasoning_effort": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "enum": [
+      "low",
+      "medium",
+      "high"
+     ]
+    }
+   },
+   "response_format": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "object"
+    }
+   },
+   "seed": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "integer"
+    }
+   },
+   "stop": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": [
+      "string",
+      "array"
+     ],
+     "items": "string"
+    }
+   },
+   "temperature": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "number",
+     "minimum": 0.0,
+     "maximum": 2.0
+    }
+   },
+   "tool_choice": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": [
+      "string",
+      "object"
+     ]
+    }
+   },
+   "tools": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "array",
+     "items": "object"
+    }
+   },
+   "top_logprobs": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "integer",
+     "minimum": 0.0,
+     "maximum": 20.0
+    }
+   },
+   "top_p": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "number",
+     "minimum": 0.0,
+     "maximum": 1.0
+    }
+   },
+   "web_search": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "boolean"
+    }
+   },
+   "web_search_excluded_domains": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "array",
+     "items": "string"
+    }
+   }
+  }
+ },
+ "openrouter/anthropic/claude-haiku-5.5": {
+  "upstream_id": "anthropic/claude-haiku-5.5",
+  "observed_at": null,
+  "parameters": {
+   "frequency_penalty": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "number",
+     "minimum": -2.0,
+     "maximum": 2.0
+    }
+   },
+   "logprobs": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "boolean"
+    }
+   },
+   "max_tokens": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "integer",
+     "minimum": 1.0
+    }
+   },
+   "n": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "integer",
+     "minimum": 1.0
+    }
+   },
+   "presence_penalty": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "number",
+     "minimum": -2.0,
+     "maximum": 2.0
+    }
+   },
+   "provider_params.data_collection": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "enum": [
+      "allow",
+      "deny"
+     ]
+    }
+   },
+   "provider_params.max_price_completion": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$",
+     "max_length": 64
+    }
+   },
+   "provider_params.max_price_prompt": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$",
+     "max_length": 64
+    }
+   },
+   "provider_params.sort": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "enum": [
+      "price"
+     ]
+    }
+   },
+   "provider_params.top_k": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "integer",
+     "minimum": 0.0
+    }
+   },
+   "provider_params.zdr": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "boolean"
+    }
+   },
+   "reasoning.effort": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "enum": [
+      "max",
+      "xhigh",
+      "high",
+      "medium",
+      "low",
+      "minimal",
+      "none"
+     ]
+    }
+   },
+   "reasoning_effort": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "string",
+     "enum": [
+      "low",
+      "medium",
+      "high"
+     ]
+    }
+   },
+   "response_format": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "object"
+    }
+   },
+   "seed": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "integer"
+    }
+   },
+   "stop": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": [
+      "string",
+      "array"
+     ],
+     "items": "string"
+    }
+   },
+   "temperature": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "number",
+     "minimum": 0.0,
+     "maximum": 2.0
+    }
+   },
+   "tool_choice": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": [
+      "string",
+      "object"
+     ]
+    }
+   },
+   "tools": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "array",
+     "items": "object"
+    }
+   },
+   "top_logprobs": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "integer",
+     "minimum": 0.0,
+     "maximum": 20.0
+    }
+   },
+   "top_p": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "number",
+     "minimum": 0.0,
+     "maximum": 1.0
+    }
+   },
+   "web_search": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "boolean"
+    }
+   },
+   "web_search_excluded_domains": {
+    "provider_support": "supported",
+    "gateway_status": "enabled",
+    "deprecated": null,
+    "cache_behavior": "keyed",
+    "schema": {
+     "type": "array",
+     "items": "string"
+    }
+   }
+  }
  }
 }
