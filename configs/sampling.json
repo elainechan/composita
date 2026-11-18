@@ -1,0 +1,17 @@
+{
+ "_status": "CONFIRMED 2026-11-18",
+ "k": 5,
+ "seeds": [0, 1, 2, 3, 4],
+ "params": {
+  "temperature": 1.0,
+  "reasoning_effort": "medium",
+  "max_tokens": 16000
+ },
+ "prompt": "benchmark default (inspect template) + SF's built-in Model instruction; no custom prompt",
+ "notes": {
+  "seeds": "one seed per sample: seed is in SF's cache key, so k seeds = k real calls, not k cache hits",
+  "temperature": "1.0 everywhere. OpenRouter lists no temperature support for gpt-5.6-* and claude-*; they sample at their own default (1.0). Set explicitly for gemini/qwen so all models match",
+  "max_tokens": "high ceiling so medium-effort reasoning does not cut off the ANSWER line; billing is per token used. For budget-based providers (Anthropic, Gemini) the thinking budget may scale with max_tokens; the Day 6 pilot measures it",
+  "agreement": "per case: modal answer over k samples; agreement = count(mode)/k; opt-out ('Insufficient information') counts as its own answer; ties broken by lowest seed"
+ }
+}
