@@ -21,6 +21,7 @@ Notebook (one kernel = one Cloudflare login):
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import os
 import signal
@@ -100,11 +101,29 @@ def preflight(deadline_s: int = 300) -> int:
     return n
 
 
-def run(model: str, benchmark: str, *, limit: int | None = None,
+SAMPLING = Path(__file__).parent / "configs" / "sampling.json"
+
+
+def candidates(model: str, k: int | None = None) -> list:
+    """k seeded copies of one model, with the shared params from configs/sampling.json.
+
+    Each copy gets its own seed (part of SF's cache key, so k real calls) and its own
+    name (sf.evaluate rejects duplicate candidate names). k=None uses the config's k.
+    """
+    cfg = json.loads(SAMPLING.read_text())
+    seeds = cfg["seeds"][: cfg["k"] if k is None else k]
+    if k is not None and len(seeds) < k:
+        raise ValueError(f"configs/sampling.json has {len(seeds)} seeds, need {k}")
+    short = model.rsplit("/", 1)[-1]
+    return [sf.Model(model, name=f"{short}-s{s}", params={**cfg["params"], "seed": s})
+            for s in seeds]
+
+
+def run(model: str, benchmark: str, *, k: int | None = None, limit: int | None = None,
         cases: list[int] | None = None, queue_timeout_s: int = 600,
         run_timeout_s: int = 3600, export: Path | None = None,
         capture: bool = False, use_cache: bool = True):
-    """One single-model evaluation. Spends credit once a runner starts it. Returns the Report."""
+    """One model, k seeded samples, one sf.evaluate. Spends credit once a runner starts it."""
     t0 = time.time()
     phase = _Phase("queue")
 
@@ -116,11 +135,13 @@ def run(model: str, benchmark: str, *, limit: int | None = None,
                      phase.started_at - t0, run_timeout_s)
         _log_event(event)
 
-    log.info("submit model=%s benchmark=%s limit=%s cases=%s queue_timeout=%ss run_timeout=%ss",
-             model, benchmark, limit, cases, queue_timeout_s, run_timeout_s)
+    cands = candidates(model, k)
+    log.info("submit model=%s k=%d params=%s benchmark=%s limit=%s cases=%s "
+             "queue_timeout=%ss run_timeout=%ss", model, len(cands), dict(cands[0].params),
+             benchmark, limit, cases, queue_timeout_s, run_timeout_s)
     try:
         report = _with_timers(
-            phase, queue_timeout_s, sf.evaluate, sf.Model(model), benchmark=benchmark,
+            phase, queue_timeout_s, sf.evaluate, cands, benchmark=benchmark,
             limit=limit, cases=cases, on_event=on_event,
             capture=capture, use_cache=use_cache,
         )
@@ -132,8 +153,8 @@ def run(model: str, benchmark: str, *, limit: int | None = None,
             log.error("%s: ran %.0fs after start; stop sent, partial calls may be billed",
                       exc, time.time() - phase.started_at)
         raise
-    log.info("done in %.1fs score=%s usage=%s",
-             time.time() - t0, report.candidates.only.score, report.usage)
+    log.info("done in %.1fs scores=%s usage=%s", time.time() - t0,
+             {c.name: c.score for c in report.candidates}, report.usage)
     if export is not None:
         log.info("exported to %s", report.export(export))
     return report
@@ -144,6 +165,7 @@ def main() -> int:
     p.add_argument("model", nargs="?")
     p.add_argument("benchmark", nargs="?")
     p.add_argument("--check", action="store_true", help="preflight only (free)")
+    p.add_argument("--k", type=int, help="samples per case (default: k in configs/sampling.json)")
     p.add_argument("--limit", type=int)
     p.add_argument("--cases", type=int, nargs="+")
     p.add_argument("--queue-timeout", type=int, default=600,
@@ -175,7 +197,7 @@ def main() -> int:
         log.error("preflight %s: login not completed; nothing submitted", exc)
         return 3
     try:
-        run(a.model, a.benchmark, limit=a.limit, cases=a.cases,
+        run(a.model, a.benchmark, k=a.k, limit=a.limit, cases=a.cases,
             queue_timeout_s=a.queue_timeout, run_timeout_s=a.run_timeout,
             export=Path("exports") / f"{stem}.json",
             capture=a.capture, use_cache=not a.no_cache)
