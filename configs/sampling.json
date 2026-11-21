@@ -1,7 +1,18 @@
 {
- "_status": "CONFIRMED 2026-11-18",
- "k": 5,
- "seeds": [0, 1, 2, 3, 4],
+ "_status": "CONFIRMED 2026-11-18; k by role CONFIRMED 2026-11-21",
+ "k_by_role": {
+  "cheap": 5,
+  "expensive": 1,
+  "frontier": 1
+ },
+ "k_note": "plan: cheap models x k (cascade self-agreement), expensive/frontier x1; seeds 1-4 may be added later for expensive/frontier only if the version fingerprint is unchanged",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
  "params": {
   "temperature": 1.0,
   "reasoning_effort": "medium",

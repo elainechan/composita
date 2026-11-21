@@ -27,13 +27,15 @@ import os
 import signal
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 os.environ.setdefault("DO_NOT_TRACK", "1")
 # The SDK prints the Cloudflare login URL to stdout; unbuffered so it shows when redirected.
 sys.stdout.reconfigure(line_buffering=True)
 import screamingface as sf  # noqa: E402
+
+import model_version  # noqa: E402
 
 log = logging.getLogger("run_eval")
 
@@ -104,26 +106,62 @@ def preflight(deadline_s: int = 300) -> int:
 SAMPLING = Path(__file__).parent / "configs" / "sampling.json"
 
 
+def role(model: str) -> str:
+    """cheap / expensive / frontier, from configs/models.json (cheap wins if listed twice)."""
+    m = json.loads((SAMPLING.parent / "models.json").read_text())
+    if model in {p["cheap"] for p in m["cascade_pairs"]}:
+        return "cheap"
+    if model in {p["expensive"] for p in m["cascade_pairs"]}:
+        return "expensive"
+    if model in m["frontier_ensemble"]:
+        return "frontier"
+    raise ValueError(f"{model} is not in configs/models.json")
+
+
 def candidates(model: str, k: int | None = None) -> list:
     """k seeded copies of one model, with the shared params from configs/sampling.json.
 
     Each copy gets its own seed (part of SF's cache key, so k real calls) and its own
-    name (sf.evaluate rejects duplicate candidate names). k=None uses the config's k.
+    name (sf.evaluate rejects duplicate candidate names). k=None uses k_by_role.
     """
     cfg = json.loads(SAMPLING.read_text())
-    seeds = cfg["seeds"][: cfg["k"] if k is None else k]
-    if k is not None and len(seeds) < k:
-        raise ValueError(f"configs/sampling.json has {len(seeds)} seeds, need {k}")
+    n = cfg["k_by_role"][role(model)] if k is None else k
+    seeds = cfg["seeds"][:n]
+    if len(seeds) < n:
+        raise ValueError(f"configs/sampling.json has {len(seeds)} seeds, need {n}")
     short = model.rsplit("/", 1)[-1]
     return [sf.Model(model, name=f"{short}-s{s}", params={**cfg["params"], "seed": s})
             for s in seeds]
 
 
+class VersionMismatch(Exception):
+    """The route does not serve the pinned model version (configs/model_versions.json)."""
+
+
+def _version_check(model: str, when: str) -> dict:
+    """Fingerprint now vs the pin. Logs and returns {fingerprint, problems}."""
+    now, problems = model_version.check(model)
+    if problems:
+        log.error("version check %s: %s does NOT match pin: %s", when, model, "; ".join(problems))
+    else:
+        log.info("version check %s: %s = %s", when, model, now["canonical_slug"])
+    return {"when": when, "utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "fingerprint": now, "problems": problems}
+
+
 def run(model: str, benchmark: str, *, k: int | None = None, limit: int | None = None,
         cases: list[int] | None = None, queue_timeout_s: int = 600,
         run_timeout_s: int = 3600, export: Path | None = None,
-        capture: bool = False, use_cache: bool = True):
-    """One model, k seeded samples, one sf.evaluate. Spends credit once a runner starts it."""
+        capture: bool = False, use_cache: bool = False):
+    """One model, k seeded samples, one sf.evaluate. Spends credit once a runner starts it.
+
+    Refuses to submit unless the route serves the pinned version; re-checks afterwards and
+    writes <export>.version.json. A run whose version changed is INVALID (VersionMismatch).
+    Cache is off by default: a cached answer can't be tied to a model version.
+    """
+    before = _version_check(model, "before")
+    if before["problems"]:
+        raise VersionMismatch(f"{model}: refusing to submit; nothing billed")
     t0 = time.time()
     phase = _Phase("queue")
 
@@ -139,6 +177,7 @@ def run(model: str, benchmark: str, *, k: int | None = None, limit: int | None =
     log.info("submit model=%s k=%d params=%s benchmark=%s limit=%s cases=%s "
              "queue_timeout=%ss run_timeout=%ss", model, len(cands), dict(cands[0].params),
              benchmark, limit, cases, queue_timeout_s, run_timeout_s)
+    report = None
     try:
         report = _with_timers(
             phase, queue_timeout_s, sf.evaluate, cands, benchmark=benchmark,
@@ -153,10 +192,19 @@ def run(model: str, benchmark: str, *, k: int | None = None, limit: int | None =
             log.error("%s: ran %.0fs after start; stop sent, partial calls may be billed",
                       exc, time.time() - phase.started_at)
         raise
+    finally:
+        after = _version_check(model, "after")
+        if export is not None:
+            sidecar = export.with_suffix(".version.json")
+            sidecar.write_text(json.dumps({
+                "model": model, "valid": not after["problems"] and report is not None,
+                "use_cache": use_cache, "before": before, "after": after}, indent=1) + "\n")
     log.info("done in %.1fs scores=%s usage=%s", time.time() - t0,
              {c.name: c.score for c in report.candidates}, report.usage)
     if export is not None:
         log.info("exported to %s", report.export(export))
+    if after["problems"]:
+        raise VersionMismatch(f"{model}: version changed during the run; results INVALID")
     return report
 
 
@@ -165,7 +213,7 @@ def main() -> int:
     p.add_argument("model", nargs="?")
     p.add_argument("benchmark", nargs="?")
     p.add_argument("--check", action="store_true", help="preflight only (free)")
-    p.add_argument("--k", type=int, help="samples per case (default: k in configs/sampling.json)")
+    p.add_argument("--k", type=int, help="samples per case (default: k_by_role in configs/sampling.json)")
     p.add_argument("--limit", type=int)
     p.add_argument("--cases", type=int, nargs="+")
     p.add_argument("--queue-timeout", type=int, default=600,
@@ -175,7 +223,8 @@ def main() -> int:
     p.add_argument("--login-timeout", type=int, default=300,
                    help="seconds to finish the Cloudflare login in preflight (default 300)")
     p.add_argument("--capture", action="store_true")
-    p.add_argument("--no-cache", action="store_true")
+    p.add_argument("--use-cache", action="store_true",
+                   help="allow cached answers (off by default: they can't be tied to a version)")
     a = p.parse_args()
 
     if a.check:
@@ -200,9 +249,12 @@ def main() -> int:
         run(a.model, a.benchmark, k=a.k, limit=a.limit, cases=a.cases,
             queue_timeout_s=a.queue_timeout, run_timeout_s=a.run_timeout,
             export=Path("exports") / f"{stem}.json",
-            capture=a.capture, use_cache=not a.no_cache)
+            capture=a.capture, use_cache=a.use_cache)
     except Deadline:
         return 2
+    except VersionMismatch as exc:
+        log.error("%s", exc)
+        return 4
     return 0
 
 
