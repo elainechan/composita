@@ -13,7 +13,7 @@
  "basis": "cost_model.py; 3,000 output tokens/call middle case; re-run after the Day 6 pilot with measured cost",
  "plan_by_week_usd_at_3000_tokens": {
   "d6_pilot": "cases 1-50, part of W2 (not re-run)",
-  "w2_seqqa_baselines": 206,
+  "w2_seqqa_baselines": 191,
   "w3_w5_hull_cascade_heldout": 0,
   "w6_cascades_majority_vote": "offline from W2 + reserve",
   "w7_screening": 0,
@@ -22,7 +22,7 @@
   "w11_w12_calculator_writeup": 0
  },
  "rules": {
-  "sampling": "cheap models k=5; expensive and frontier k=1 (configs/sampling.json)",
+  "sampling": "cheap models k=5; expensive and frontier k=1 (configs/sampling.json). 7 models, 3 pairs (Qwen pair suspended 2026-11-21).",
   "stop_rule": "After the pilot: upper 95% bound of SeqQA cost per case (mean + 1.96*sd/sqrt(n)) must be <= max_case_cost() with mmlu_min_cases (~$1.35 at 2026-11-15 prices; retries applied to SeqQA and MMLU-Pro). Otherwise stop and re-plan.",
   "mmlu_size": "One subject-stratified ranked list of all 12,032 questions. At Week 9, run the longest prefix the remaining credit covers (max_mmlu_cases with measured cost and actual spend); minimum 2,000.",
   "optional_topup": "Expensive/frontier SeqQA seeds 1-4 (~$525 at 3,000 tokens) only if W6-W8 needs them, from unallocated credit, and only if the model's version fingerprint is unchanged.",
