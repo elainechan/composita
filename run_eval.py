@@ -93,6 +93,8 @@ def _log_event(event) -> None:
                  f" out={event.output_tokens} cache={event.cache_status}")
     elif event.kind == "log":
         extra = f" {event.severity_text}: {event.body}"
+        if event.attributes:
+            extra += f" {dict(event.attributes)}"
     log.info("event %s seq=%s run=%s%s", event.kind, event.sequence, event.run_id, extra)
 
 
@@ -129,9 +131,14 @@ def candidates(model: str, k: int | None = None) -> list:
     seeds = cfg["seeds"][:n]
     if len(seeds) < n:
         raise ValueError(f"configs/sampling.json has {len(seeds)} seeds, need {n}")
+    omit = (set(cfg["omit_params_by_vendor"].get(model.split("/")[1], []))
+            | set(cfg.get("omit_params_by_model", {}).get(model, [])))
     short = model.rsplit("/", 1)[-1]
-    return [sf.Model(model, name=f"{short}-s{s}", params={**cfg["params"], "seed": s})
-            for s in seeds]
+    out = []
+    for s in seeds:
+        params = {k: v for k, v in {**cfg["params"], "seed": s}.items() if k not in omit}
+        out.append(sf.Model(model, name=f"{short}-s{s}", params=params))
+    return out
 
 
 class VersionMismatch(Exception):
@@ -174,6 +181,9 @@ def run(model: str, benchmark: str, *, k: int | None = None, limit: int | None =
         _log_event(event)
 
     cands = candidates(model, k)
+    bad = model_version.unsupported_params(model, dict(cands[0].params))
+    if bad:
+        raise ValueError(f"{model}: OpenRouter lists no support for {bad}; refusing to submit")
     log.info("submit model=%s k=%d params=%s benchmark=%s limit=%s cases=%s "
              "queue_timeout=%ss run_timeout=%ss", model, len(cands), dict(cands[0].params),
              benchmark, limit, cases, queue_timeout_s, run_timeout_s)
@@ -255,6 +265,9 @@ def main() -> int:
     except VersionMismatch as exc:
         log.error("%s", exc)
         return 4
+    except ValueError as exc:
+        log.error("%s", exc)
+        return 5
     return 0
 
 

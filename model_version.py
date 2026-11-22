@@ -61,6 +61,14 @@ def compare(pinned: dict, now: dict) -> list[str]:
     return problems
 
 
+def unsupported_params(route: str, params: dict) -> list[str]:
+    """Params OpenRouter's catalogue does not list for this route (these fail upstream)."""
+    m = {x["id"]: x for x in _get(f"{API}/models")["data"]}.get(route.removeprefix("openrouter/"))
+    if m is None:
+        return sorted(params)
+    return sorted(set(params) - set(m.get("supported_parameters", [])))
+
+
 def load_pins() -> dict:
     return json.loads(PINS.read_text())["routes"]
 
