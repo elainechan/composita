@@ -1,0 +1,74 @@
+{
+ "_status": "CONFIRMED 2026-11-15",
+ "price_snapshot": "configs/prices_2026-11-15.json",
+ "params_snapshot": "configs/model_params_2026-11-15.json",
+ "cost_assumption": "per question ~600 input + ~1500 output tokens (CoT); Day 5 measures real usage",
+ "reasoning_effort": "medium",
+ "reasoning_effort_note": "user default, chosen 2026-11-15; same level for every model; Day 6 pilot checks tokens/truncation",
+ "cascade_pairs": [
+  {
+   "gap_target": "~3x",
+   "cheap": "openrouter/google/gemini-3.8-flash",
+   "expensive": "openrouter/google/gemini-4-argon",
+   "gap": 2.4
+  },
+  {
+   "gap_target": "~10x",
+   "cheap": "openrouter/openai/gpt-5.6-luna",
+   "expensive": "openrouter/openai/gpt-5.6-terra",
+   "gap": 10.0
+  },
+  {
+   "gap_target": "30x+",
+   "cheap": "openrouter/anthropic/claude-haiku-5.5",
+   "expensive": "openrouter/anthropic/claude-opus-5.5",
+   "gap": 40.0
+  },
+  {
+   "gap_target": "30x+",
+   "cheap": "openrouter/qwen/qwen3.7-flash",
+   "expensive": "openrouter/qwen/qwen3.8-2.4t-a95b",
+   "gap": 47.9
+  }
+ ],
+ "cascade_backups": [
+  {
+   "cheap": "openrouter/openai/gpt-5.6-luna",
+   "expensive": "openrouter/openai/gpt-6-astra",
+   "gap": 42.2
+  },
+  {
+   "cheap": "openrouter/deepseek/deepseek-v4-flash",
+   "expensive": "openrouter/deepseek/deepseek-v4-pro",
+   "gap": 8.6
+  },
+  {
+   "cheap": "openrouter/google/gemini-3.6-flash",
+   "expensive": "openrouter/google/gemini-4-argon",
+   "gap": 2.7
+  },
+  {
+   "cheap": "openrouter/anthropic/claude-haiku-4.5",
+   "expensive": "openrouter/anthropic/claude-opus-5.5",
+   "gap": 4.0
+  }
+ ],
+ "frontier_ensemble": [
+  "openrouter/anthropic/claude-opus-5.5",
+  "openrouter/openai/gpt-5.6-sol",
+  "openrouter/google/gemini-4-argon"
+ ],
+ "frontier_ensemble_note": "cheaper tier chosen 2026-11-15 (~$0.08/q, ~$50 per SeqQA pass)",
+ "frontier_ensemble_premium_alt": [
+  "openrouter/anthropic/claude-fable-5.2",
+  "openrouter/openai/gpt-6-astra",
+  "openrouter/google/gemini-4-argon"
+ ],
+ "avoid": {
+  "openrouter/openai/gpt-5": "expires 2026-12-11 (before Week 12)",
+  "openrouter/openai/gpt-5-mini": "expires 2026-12-11 (before Week 12)",
+  "openrouter/openrouter/auto-beta": "router, not a model",
+  "openrouter/openrouter/fusion": "router, not a model",
+  "*-preview": "deprecation risk through Week 12"
+ }
+}
