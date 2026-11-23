@@ -1,0 +1,110 @@
+{
+ "pinned_utc": "2026-11-20T21:25:10Z",
+ "rule": "results count for a model only if its canonical_slug matched before and after every run; never combine runs across versions",
+ "routes": {
+  "openrouter/anthropic/claude-haiku-5.5": {
+   "route": "openrouter/anthropic/claude-haiku-5.5",
+   "canonical_slug": "anthropic/claude-haiku-5.5-20261007",
+   "created": 1791397883,
+   "hosts": [
+    "Amazon Bedrock:unknown",
+    "Anthropic:unknown",
+    "Azure:unknown",
+    "Claude Platform on AWS:unknown",
+    "Google:unknown"
+   ]
+  },
+  "openrouter/anthropic/claude-opus-5.5": {
+   "route": "openrouter/anthropic/claude-opus-5.5",
+   "canonical_slug": "anthropic/claude-opus-5.5-20260921",
+   "created": 1790094732,
+   "hosts": [
+    "Amazon Bedrock:unknown",
+    "Anthropic:unknown",
+    "Anthropic:unknown",
+    "Azure:unknown",
+    "Claude Platform on AWS:unknown",
+    "Google:unknown"
+   ]
+  },
+  "openrouter/google/gemini-3.8-flash": {
+   "route": "openrouter/google/gemini-3.8-flash",
+   "canonical_slug": "google/gemini-3.8-flash-20260902",
+   "created": 1788362056,
+   "hosts": [
+    "Google AI Studio:unknown",
+    "Google AI Studio:unknown",
+    "Google AI Studio:unknown",
+    "Google:unknown",
+    "Google:unknown",
+    "Google:unknown"
+   ]
+  },
+  "openrouter/google/gemini-4-argon": {
+   "route": "openrouter/google/gemini-4-argon",
+   "canonical_slug": "google/gemini-4-argon-20261013",
+   "created": 1791907477,
+   "hosts": [
+    "Google AI Studio:unknown",
+    "Google AI Studio:unknown",
+    "Google AI Studio:unknown",
+    "Google:unknown",
+    "Google:unknown"
+   ]
+  },
+  "openrouter/openai/gpt-5.6-luna": {
+   "route": "openrouter/openai/gpt-5.6-luna",
+   "canonical_slug": "openai/gpt-5.6-luna-20260709",
+   "created": 1783590864,
+   "hosts": [
+    "Amazon Bedrock:unknown",
+    "Azure:unknown",
+    "OpenAI:unknown",
+    "OpenAI:unknown",
+    "OpenAI:unknown"
+   ]
+  },
+  "openrouter/openai/gpt-5.6-sol": {
+   "route": "openrouter/openai/gpt-5.6-sol",
+   "canonical_slug": "openai/gpt-5.6-sol-20260709",
+   "created": 1783590850,
+   "hosts": [
+    "Amazon Bedrock:unknown",
+    "Azure:unknown",
+    "OpenAI:unknown",
+    "OpenAI:unknown",
+    "OpenAI:unknown"
+   ]
+  },
+  "openrouter/openai/gpt-5.6-terra": {
+   "route": "openrouter/openai/gpt-5.6-terra",
+   "canonical_slug": "openai/gpt-5.6-terra-20260709",
+   "created": 1783590857,
+   "hosts": [
+    "Azure:unknown",
+    "OpenAI:unknown",
+    "OpenAI:unknown",
+    "OpenAI:unknown"
+   ]
+  },
+  "openrouter/qwen/qwen3.7-flash": {
+   "route": "openrouter/qwen/qwen3.7-flash",
+   "canonical_slug": "qwen/qwen3.7-flash-20260727",
+   "created": 1785190561,
+   "hosts": [
+    "Alibaba:unknown"
+   ]
+  },
+  "openrouter/qwen/qwen3.8-2.4t-a95b": {
+   "route": "openrouter/qwen/qwen3.8-2.4t-a95b",
+   "canonical_slug": "qwen/qwen3.8-2.4t-a95b-20260812",
+   "created": 1786551702,
+   "hosts": [
+    "Alibaba:unknown",
+    "Novita:unknown",
+    "SiliconFlow:fp8",
+    "Venice:unknown"
+   ]
+  }
+ }
+}

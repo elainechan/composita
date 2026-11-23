@@ -1,0 +1,33 @@
+{
+ "_status": "CONFIRMED 2026-11-21",
+ "policy": {
+  "credit_usd": 5000,
+  "contingency": 0.20,
+  "retry": 0.10,
+  "reserves_usd": {
+   "w6_w8_sf_native_and_latency_runs": 200,
+   "w8_cheap_extra_samples_5_to_10": 56
+  },
+  "mmlu_min_cases": 2000
+ },
+ "basis": "cost_model.py; 3,000 output tokens/call middle case; re-run after the Day 6 pilot with measured cost",
+ "plan_by_week_usd_at_3000_tokens": {
+  "d6_pilot": "cases 1-50, part of W2 (not re-run)",
+  "w2_seqqa_baselines": 191,
+  "w3_w5_hull_cascade_heldout": 0,
+  "w6_cascades_majority_vote": "offline from W2 + reserve",
+  "w7_screening": 0,
+  "w8_latency_sensitivity": "reserves",
+  "w9_w10_mmlu_pro": "~318 per 1,000 cases; size set at Week 9",
+  "w11_w12_calculator_writeup": 0
+ },
+ "rules": {
+  "sampling": "cheap models k=5; expensive and frontier k=1 (configs/sampling.json). 7 models, 3 pairs (Qwen pair suspended 2026-11-21).",
+  "stop_rule": "After the pilot: upper 95% bound of SeqQA cost per case (mean + 1.96*sd/sqrt(n)) must be <= max_case_cost() with mmlu_min_cases (~$1.35 at 2026-11-15 prices; retries applied to SeqQA and MMLU-Pro). Otherwise stop and re-plan.",
+  "mmlu_size": "One subject-stratified ranked list of all 12,032 questions. At Week 9, run the longest prefix the remaining credit covers (max_mmlu_cases with measured cost and actual spend); minimum 2,000.",
+  "optional_topup": "Expensive/frontier SeqQA seeds 1-4 (~$525 at 3,000 tokens) only if W6-W8 needs them, from unallocated credit, and only if the model's version fingerprint is unchanged.",
+  "cache": "OFF for all measured runs (run_eval.py default).",
+  "versions": "Every run checked against configs/model_versions.json before and after; mismatch = refused / invalid. Never combine runs across versions.",
+  "chunking": "Chunk size = floor(3000*4/(k*latency)) from pilot latency per model; at most 3 chunks at once (shared 8-slot pool)."
+ }
+}

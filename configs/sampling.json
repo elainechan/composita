@@ -1,16 +1,43 @@
 {
- "_status": "CONFIRMED 2026-11-18",
- "k": 5,
- "seeds": [0, 1, 2, 3, 4],
+ "_status": "CONFIRMED 2026-11-18; k by role CONFIRMED 2026-11-21; per-vendor omissions 2026-11-22; argon provider-default effort 2026-11-22",
+ "k_by_role": {
+  "cheap": 5,
+  "expensive": 1,
+  "frontier": 1
+ },
+ "k_note": "plan: cheap models x k (cascade self-agreement), expensive/frontier x1; seeds 1-4 may be added later for expensive/frontier only if the version fingerprint is unchanged",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
  "params": {
   "temperature": 1.0,
   "reasoning_effort": "medium",
   "max_tokens": 16000
  },
+ "omit_params_by_vendor": {
+  "openai": [
+   "temperature"
+  ],
+  "anthropic": [
+   "temperature",
+   "seed"
+  ]
+ },
+ "omit_note": "Day 6 diagnostics 2026-11-22: these params make the call fail (upstream_error). Their reasoning modes fix temperature at 1.0, so sampling temperature is unchanged. Without seed, Anthropic samples are still k real calls (cache off, distinct names). run_eval.py also refuses any param the OpenRouter catalogue lists as unsupported.",
+ "omit_params_by_model": {
+  "openrouter/google/gemini-4-argon": [
+   "reasoning_effort"
+  ]
+ },
+ "omit_by_model_note": "User decision 2026-11-22 (option a): gemini-4-argon rejects every reasoning_effort value upstream (low/medium/high all provider_error) although SF and OpenRouter list it as supported. It runs at Google's default effort; report as 'provider-default effort' in the write-up. Bug reported to SF (option b). Never combine argon runs with and without reasoning_effort.",
  "prompt": "benchmark default (inspect template) + SF's built-in Model instruction; no custom prompt",
  "notes": {
-  "seeds": "one seed per sample: seed is in SF's cache key, so k seeds = k real calls, not k cache hits",
-  "temperature": "1.0 everywhere. OpenRouter lists no temperature support for gpt-5.6-* and claude-*; they sample at their own default (1.0). Set explicitly for gemini/qwen so all models match",
+  "seeds": "one seed per sample: seed is in SF's cache key, so k seeds = k real calls, not k cache hits. Anthropic has no seed: sample i is identified by its name -s{i} only",
+  "temperature": "1.0 for Gemini (set explicitly); OpenAI and Anthropic omit it (fixed at 1.0 by their reasoning modes)",
   "max_tokens": "high ceiling so medium-effort reasoning does not cut off the ANSWER line; billing is per token used. For budget-based providers (Anthropic, Gemini) the thinking budget may scale with max_tokens; the Day 6 pilot measures it",
   "agreement": "per case: modal answer over k samples; agreement = count(mode)/k; opt-out ('Insufficient information') counts as its own answer; ties broken by lowest seed"
  }
