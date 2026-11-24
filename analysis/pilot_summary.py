@@ -77,9 +77,11 @@ def summarise(run: dict, common: set[int]) -> dict:
 
 
 def run_ids(run: dict) -> list[dict]:
-    """SF identifiers per run: verifiable against SF's records (pinned cache replay)."""
+    """SF identifiers per run. pinned_cache + url4 + answer_seed let a reviewer replay the run
+    from the frozen copy with their own SF account (free; never calls a live model)."""
     return [{"model": run["model"], "candidate": c["name"], "run_id": c["run_id"],
-             "pinned_cache": c.get("frozen_copy_id"), "capture_status": c.get("capture_status"),
+             "pinned_cache": c.get("frozen_copy_id"), "url4": c.get("url4"),
+             "answer_seed": c.get("answer_seed"), "capture_status": c.get("capture_status"),
              "started_at": c["started_at"], "completed_at": c["completed_at"],
              "client_version": c.get("client_version"), "export": run["path"].name}
             for c in run["report"]["candidates"]]
